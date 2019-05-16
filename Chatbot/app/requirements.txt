@@ -1,0 +1,9 @@
+Flask==1.0.2
+Flask-PyMongo==2.1.0
+Flask-RESTful==0.3.6
+flask-restplus==0.11.0
+future==0.16.0
+rivescript==1.14.9
+requests==2.19.1
+
+

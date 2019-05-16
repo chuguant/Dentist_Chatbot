@@ -1,0 +1,198 @@
+{
+    "swagger": "2.0",
+    "basePath": "/",
+    "paths": {
+        "/book/{name}/{period}": {
+            "parameters": [
+                {
+                    "in": "path",
+                    "description": "The dentist name",
+                    "name": "name",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "name": "period",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "description": "Book a time,format xx-xx-dd-mm-yyyy(24h, e.g.12-13-26-04-2019",
+                "operationId": "put_book_appointment",
+                "tags": [
+                    "Appointments"
+                ]
+            }
+        },
+        "/cancelation/{name}/{period}": {
+            "parameters": [
+                {
+                    "in": "path",
+                    "description": "The dentist name",
+                    "name": "name",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "name": "period",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "description": "Cancel an appointment according to your book_id, xx-xx-dd-mm-yyyy and dentist name, e.g.12-13-26-04-2019",
+                "operationId": "put_cancelation",
+                "tags": [
+                    "Appointments"
+                ]
+            }
+        },
+        "/event_id": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "description": "The booked event id",
+                "operationId": "get_book_event",
+                "tags": [
+                    "Appointments"
+                ]
+            }
+        },
+        "/timeslots/{name}": {
+            "parameters": [
+                {
+                    "in": "path",
+                    "description": "The dentist name",
+                    "name": "name",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "description": "Available time of this dentist",
+                "operationId": "get_timeslots",
+                "tags": [
+                    "Appointments"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "description": "Add an available time,format xx-xx-dd-mm-yyyy(24h, e.g.12-13-26-04-2019)",
+                "operationId": "post_timeslots",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Period"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Appointments"
+                ]
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "description": "Deletes an existing timeslot",
+                "operationId": "delete_timeslots",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Period"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Appointments"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Dentist Reservation",
+        "version": "1.0",
+        "description": "Book an appointment with a dentist"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Appointments",
+            "description": "Default namespace"
+        }
+    ],
+    "definitions": {
+        "Period": {
+            "properties": {
+                "period": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "responses": {
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        },
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        }
+    }
+}

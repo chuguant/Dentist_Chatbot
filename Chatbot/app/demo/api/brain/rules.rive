@@ -1,0 +1,179 @@
++ hi bot
+- hi user!
+
++ how are you
+- I am good, how are you?
+
++ where are you from
+- I am from my country :)
+
++ hi
+- Hello human!
+- Hello!
+- Hi there!
+- Hey!
+- Hi!
+
++ hello bot
+- Hello human!
+- Hello!
+- Hi there!
+- Hey!
+- Hi!
+
++ my name is _
+- oh hey <star>
+
++ (i am happy|i am excited|i am thrilled)
+- I am happy too for you.
+
++ (what|which) (doctor|dentist) [do] [you] have
++ (what|which) dentist [can|should] i choose here
+- intent=dentistName
+
++ which dentist should i (choose|book)
+- intent=dentistInfo
+
++ tell me about something
+- intent=dentistInfo
+
++ tell me about these [dentist|doctor|dentists|doctors]
+- intent=dentistInfo
+
++ i want to know [something] [about] [dentist|dentists]
+- intent=dentistInfo
+
++ i want to know [something] [about][dentist|doctor] *
+- intent=dentistSinInfo,entity=<star>
+
++ tell me about [dentist|doctor] *
+- intent=dentistSinInfo,entity=<star>
+
++ [could] you tell me about [dentist|doctor] *
+- intent=dentistSinInfo,entity=<star>
+
++ can i know the available time of *
+- intent=timetable,entity=<star>
+
++ which time is available of *
+- intent=timetable,entity=<star>
+
++ tell me about the [available] time of *
+- intent=timetable,entity=<star>
+
++ what is the available time of *
+- intent=timetable,entity=<star>
+
++ what is the [available] timetable of *
+- intent=timetable,entity=<star>
+
++ tell me about the [available] timetable of *
+- intent=timetable,entity=<star>
+
++ i want to book [the time] at * with * [please]
+- intent=book,entity1=<star1>,entity2=<star2>
+
++ [could|can] you help [me] [to] book the time at * with * [please|pls]
+- intent=book,entity1=<star1>,entity2=<star2>
+
++ i want to book with * at [the time] * [please]
+- intent=book,entity1=<star2>,entity2=<star1>
+
++ i want to cancel the time at * with * [please]
+- intent=cancel,entity1=<star1>,entity2=<star2>
+
++ [could|can] you help [me] [to] cancel the time at * with * [please|pls]
+- intent=cancel,entity1=<star1>,entity2=<star2>
+
++ i want to cancel with * at [the time] * [please]
+- intent=cancel,entity1=<star2>,entity2=<star1>
+
++ is the time at * with * available
+- intent=checktime,entity1=<star1>,entity2=<star2>
+
++ can i book the time at * with *
+- intent=checktime,entity1=<star1>,entity2=<star2>
+
++ what is the weather [like] [today]
+- It is a bright day, you could take a walk outside.
+
+// Capture the user's name: letters only!
++ my name is _
+- It's nice to meet you, <star>.
+- <star>, nice to meet you.
+- Pleased to meet you, <star>.
+
+// What if the user says "my name is 5"? 5 isn't a real name!
++ my name is #
+- Nobody has the name of <star>.
+- <star> isn't a real name.
+- Names don't have numbers in them, <star>.
+
+// If they say their name is something that contains both numbers
+// and letters, match this trigger:
++ my name is *
+- Your name has a number in it?
+
+// See how old the user is
++ i am # years old
+- A lot of people are <star> years old.
+
+// But don't let them give us their age in words!
++ i am _ years old
+- Can you say that again using a number?
+
+// Both numbers and letters?
++ i am * years old
+- You told me numbers and letters? Tell me only numbers.
+
+// Let them tell us where they're from. Numbers and letters are OK!
++ i am from *
+- What is it like to live in <star>?
+
+// This one has multiple wildcards in it
++ _ told me to say *
+- So did you say "<star2>" because "<star1>" told you to?
+
++ what is your (home|office|cell) phone number
+- You can call my <star> number at 1 (888) 555-5555.
+
++ i (can not|cannot) *
+- Have you tried?
+- Why can't you <star2>?
+- Do you really want to <star2>?
+
++ who (is your master|made you|created you|programmed you)
+- I was developed by a RiveScript coder; you don't need to know his name!
+
++ (what is your name|who are you|who is this)
+- My name is Aiden, I'm a chatterbot running on RiveScript!
+
++ (happy|merry) (christmas|xmas|valentines day|thanksgiving)
+- Wow! Is it really <star2> already?
+
+// Now they don't even need to say the word "phone"!
++ what is your (home|office|cell) [phone] number
+- My <star> number is: 1 (888) 555-5555.
+
++ i do not have [any] friends
+- Aw. I'll be your friend!
+
++ am i [a] (boy|guy|male) or [a] (girl|female)
+- I can't tell with any degree of certainty whether you are a <star1> or <star2>.
+
+// If the user begins a message with "google" it will create
+// a google search link.
++ google *
+- Google Search: <call>google <star></call>
+
+// If the user ends their message with "or something", the
+// bot will simply say "Or something." and drop the topic.
++ * or something
+- Or something.
+
+// Here is the Google search object. We'll cover objects in more
+// depth later in the tutorial.
+> object google javascript
+	var query = escape(args.join(" "));
+	return "<a href=\"http://www.google.com/search?q=" + query + "\">Click Here!</a>";
+< object

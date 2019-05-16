@@ -1,0 +1,57 @@
+{
+    "swagger": "2.0",
+    "basePath": "/",
+    "paths": {
+        "/ask/{qus}": {
+            "parameters": [
+                {
+                    "in": "path",
+                    "description": "The question",
+                    "name": "qus",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "description": "ask a question",
+                "operationId": "post_chat",
+                "tags": [
+                    "Chat"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Rule-Based Chatbot",
+        "version": "1.0",
+        "description": "A bot you can chat with"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Chat",
+            "description": "Default namespace"
+        }
+    ],
+    "responses": {
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        },
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        }
+    }
+}

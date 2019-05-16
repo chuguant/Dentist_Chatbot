@@ -1,0 +1,148 @@
+{
+    "swagger": "2.0",
+    "basePath": "/",
+    "paths": {
+        "/information": {
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "description": "Deletes an existing dentist file by name",
+                "operationId": "delete_timeslots",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/DentistName"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Information"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "400": {
+                        "description": "Error"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "description": "Add the information of dentist",
+                "operationId": "post_timeslots",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/DentistInformation"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Information"
+                ]
+            },
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "description": "Get all the dentist information",
+                "operationId": "get_timeslots",
+                "tags": [
+                    "Information"
+                ]
+            }
+        },
+        "/information/{name}": {
+            "parameters": [
+                {
+                    "in": "path",
+                    "description": "The name of dentist",
+                    "name": "name",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "description": "Input a dentist name",
+                "operationId": "get_country__year__class",
+                "tags": [
+                    "Information"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Dentist Information",
+        "version": "1.0",
+        "description": "The dentist information"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Information",
+            "description": "Default namespace"
+        }
+    ],
+    "definitions": {
+        "DentistName": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "DentistInformation": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "specialization": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "responses": {
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        },
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        }
+    }
+}
